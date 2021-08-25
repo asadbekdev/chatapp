@@ -10,6 +10,7 @@ class SignIn extends StatelessWidget {
       backgroundColor: Colors.black87,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           "Sign In",
           style: Theme.of(context)

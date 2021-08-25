@@ -10,6 +10,7 @@ class SignUp extends StatelessWidget {
       backgroundColor: Colors.black87,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           "Chat App",
           style: Theme.of(context)

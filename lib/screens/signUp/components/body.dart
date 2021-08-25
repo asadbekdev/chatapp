@@ -12,6 +12,8 @@ class Body extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     GlobalKey _key = GlobalKey<FormFieldState>();
     TextEditingController _usernameController = TextEditingController();
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
     return SingleChildScrollView(
       child: Form(
         key: _key,
@@ -29,13 +31,13 @@ class Body extends StatelessWidget {
               SizedBox(height: kPadding),
               CustomTextField(
                 hintText: 'Email',
-                usernameController: _usernameController,
+                usernameController: _emailController,
                 keyboardType: TextInputType.emailAddress,
               ),
               SizedBox(height: kPadding),
               CustomTextField(
                 hintText: 'Password',
-                usernameController: _usernameController,
+                usernameController: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
               ),
               SizedBox(height: kPadding * 1.5),
@@ -59,7 +61,7 @@ class Body extends StatelessWidget {
                         ),
                   ),
                   GestureDetector(
-                    onTap: () => Navigator.push(
+                    onTap: () => Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => SignIn(),
