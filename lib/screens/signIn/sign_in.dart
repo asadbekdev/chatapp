@@ -1,4 +1,4 @@
-import 'package:chatapp/screens/signUp/components/body.dart';
+import 'package:chatapp/screens/signIn/components/body.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatelessWidget {
