@@ -1,6 +1,7 @@
 import 'package:chatapp/constans.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomButton extends StatelessWidget {
   var onPressed, text;
   CustomButton({

@@ -1,6 +1,7 @@
 import 'package:chatapp/constans.dart';
-import 'package:chatapp/screens/signUp/components/custom_button.dart';
-import 'package:chatapp/screens/signUp/components/custom_text_field.dart';
+import 'package:chatapp/screens/signIn/sign_in.dart';
+import 'package:chatapp/components/custom_button.dart';
+import 'package:chatapp/components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
@@ -58,7 +59,12 @@ class Body extends StatelessWidget {
                         ),
                   ),
                   GestureDetector(
-                    // onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>)),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignIn(),
+                      ),
+                    ),
                     child: Text(
                       "Sign In",
                       style: Theme.of(context).textTheme.subtitle2!.copyWith(
@@ -67,7 +73,6 @@ class Body extends StatelessWidget {
                           ),
                     ),
                   ),
-
                 ],
               ),
             ],

@@ -11,7 +11,7 @@ class SignIn extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(
-          "Chat App",
+          "Sign In",
           style: Theme.of(context)
               .textTheme
               .headline5!
