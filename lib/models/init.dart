@@ -11,6 +11,7 @@ class Init extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black87,
       body: FutureBuilder(
         future: _init,
         builder: (context, snapshot) {
@@ -22,7 +23,7 @@ class Init extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             return SignUp();
           }
-          return Center(child: CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator(color: Colors.white));
         },
       ),
     );

@@ -10,13 +10,13 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    GlobalKey _key = GlobalKey<FormFieldState>();
+    GlobalKey _formKey = GlobalKey<FormFieldState>();
     TextEditingController _usernameController = TextEditingController();
     TextEditingController _emailController = TextEditingController();
     TextEditingController _passwordController = TextEditingController();
     return SingleChildScrollView(
       child: Form(
-        key: _key,
+        key: _formKey,
         child: Padding(
           padding: const EdgeInsets.symmetric(
               horizontal: kPadding, vertical: kPadding),
@@ -27,18 +27,37 @@ class Body extends StatelessWidget {
                 hintText: 'Username',
                 usernameController: _usernameController,
                 keyboardType: TextInputType.name,
+                validator: (val) {
+                  if (val.isEmpty || val.length < 3) {
+                    return 'Enter more than 3 characters';
+                  }
+                },
               ),
               SizedBox(height: kPadding),
               CustomTextField(
                 hintText: 'Email',
                 usernameController: _emailController,
                 keyboardType: TextInputType.emailAddress,
+                validator: (val) {
+                  var regex = RegExp(
+                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+                  if (regex.hasMatch(val)) {
+                    return null;
+                  } else {
+                    return "Enter correct email";
+                  }
+                },
               ),
               SizedBox(height: kPadding),
               CustomTextField(
                 hintText: 'Password',
                 usernameController: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
+                validator: (val) {
+                  if (val.length < 4) {
+                    return "Enter 4 characters at least";
+                  }
+                },
               ),
               SizedBox(height: kPadding * 1.5),
               CustomButton(

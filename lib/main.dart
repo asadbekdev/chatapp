@@ -1,4 +1,4 @@
-import 'package:chatapp/screens/signUp/sign_up.dart';
+import 'package:chatapp/models/init.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: SignUp(),
+      home: Init(),
     );
   }
 }

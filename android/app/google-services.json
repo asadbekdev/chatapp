@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:400215728266:android:2bf7b52d1acf78d20c8d73",
+        "mobilesdk_app_id": "1:400215728266:android:41543dfb2026a3250c8d73",
         "android_client_info": {
-          "package_name": "com.android.application"
+          "package_name": "com.example.chatapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "400215728266-go7up7v0htuocg3ch5gjt729r01is4io.apps.googleusercontent.com",
+          "client_id": "400215728266-gkjuq85njjc15a1gdcpq2s34o87o6lj9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.android.application",
+            "package_name": "com.example.chatapp",
             "certificate_hash": "64131c87b12bbd12946e5def02afd9a358cb45b7"
           }
         },
