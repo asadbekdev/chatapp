@@ -1,6 +1,8 @@
 import 'package:chatapp/models/init.dart';
 import 'package:flutter/material.dart';
 
+import 'screens/chat/chatPage.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: Init(),
+      home: Chat(),
     );
   }
 }
