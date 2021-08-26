@@ -1,4 +1,5 @@
 import 'package:chatapp/constans.dart';
+import 'package:chatapp/screens/chat/chatPage.dart';
 import 'package:chatapp/screens/home/components/message_item.dart';
 import 'package:chatapp/screens/home/components/tabBar.dart';
 import 'package:flutter/cupertino.dart';
@@ -96,7 +97,12 @@ class _BodyState extends State<Body> with TickerProviderStateMixin {
                             username: "Asadbek Noyibjonov",
                             lastMsg: "Hey What are you doing? ",
                             time: "New",
-                            onPressed: () {},
+                            onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ChatPage(),
+                              ),
+                            ),
                           ),
                         ],
                       ),
