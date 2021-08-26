@@ -1,7 +1,5 @@
-import 'package:chatapp/models/init.dart';
+import 'package:chatapp/screens/home/homePage.dart';
 import 'package:flutter/material.dart';
-
-import 'screens/chat/chatPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +14,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         fontFamily: 'Poppins',
+        brightness: Brightness.dark,
+        splashColor: Colors.transparent,
         inputDecorationTheme: InputDecorationTheme(
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: Chat(),
+      home: HomePage(),
     );
   }
 }
