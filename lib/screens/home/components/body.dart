@@ -74,7 +74,6 @@ class _BodyState extends State<Body> with TickerProviderStateMixin {
                 ),
               ),
             ),
-
             SizedBox(height: kPadding / 2),
             // CATEGORIES SECTION TABBAR
             Container(
@@ -100,7 +99,13 @@ class _BodyState extends State<Body> with TickerProviderStateMixin {
                             onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ChatPage(),
+                                builder: (context) => ChatPage(
+                                  profilePic: "assets/images/mycat.jpg",
+                                  username: "Asadbek Noyibjonov",
+                                  status: "online",
+                                  time: "New",
+                                  onPressed: () {},
+                                ),
                               ),
                             ),
                           ),

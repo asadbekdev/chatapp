@@ -1,19 +1,29 @@
 import 'package:chatapp/constans.dart';
+import 'package:chatapp/models/auth_services.dart';
 import 'package:chatapp/screens/signIn/sign_in.dart';
 import 'package:chatapp/components/custom_button.dart';
 import 'package:chatapp/components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
+
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  GlobalKey<FormFieldState> _formKey = GlobalKey<FormFieldState>();
+
+  bool isLoading = false;
+  AuthService authService = new AuthService();
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    GlobalKey _formKey = GlobalKey<FormFieldState>();
-    TextEditingController _usernameController = TextEditingController();
-    TextEditingController _emailController = TextEditingController();
-    TextEditingController _passwordController = TextEditingController();
     return SingleChildScrollView(
       child: Form(
         key: _formKey,
@@ -23,6 +33,8 @@ class Body extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: size.height * 0.35),
+
+              // USERNAME FIELD SECTION
               CustomTextField(
                 hintText: 'Username',
                 usernameController: _usernameController,
@@ -34,6 +46,8 @@ class Body extends StatelessWidget {
                 },
               ),
               SizedBox(height: kPadding),
+
+              // EMAIL FIELD SECTION
               CustomTextField(
                 hintText: 'Email',
                 usernameController: _emailController,
@@ -49,6 +63,8 @@ class Body extends StatelessWidget {
                 },
               ),
               SizedBox(height: kPadding),
+
+              // PASSWORD FIELD SECTION
               CustomTextField(
                 hintText: 'Password',
                 usernameController: _passwordController,
@@ -60,16 +76,21 @@ class Body extends StatelessWidget {
                 },
               ),
               SizedBox(height: kPadding * 1.5),
+
+              // SIGNUP BUTTON SECTION
               CustomButton(
-                onPressed: () {},
                 text: 'Sign Up',
+                onPressed: signUp,
               ),
               SizedBox(height: kPadding),
+
+              // SIGNUP BUTTON SECTION
               CustomButton(
-                onPressed: () {},
                 text: 'Sign Up with Google',
+                onPressed: () {},
               ),
               SizedBox(height: kPadding / 1.2),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -101,5 +122,24 @@ class Body extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  signUp() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    if (_formKey.currentState!.validate()) {
+      await authService
+          .signUpWithEmailAndPassword(
+              _emailController.text, _passwordController.text)
+          .then(
+        (value) {
+          if (value != null) {
+            print(value.toString());
+          }
+        },
+      );
+    }
   }
 }
