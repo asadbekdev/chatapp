@@ -10,6 +10,7 @@ void main() async {
   runApp(MyApp());
 }
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   FirebaseAuth _authUser = FirebaseAuth.instance;
 

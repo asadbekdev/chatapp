@@ -5,8 +5,10 @@ import 'package:chatapp/screens/home/components/tabBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Body extends StatefulWidget {
-  const Body({Key? key}) : super(key: key);
+  GlobalKey<ScaffoldState>? scaffoldKey;
+  Body({Key? key, this.scaffoldKey}) : super(key: key);
 
   @override
   _BodyState createState() => _BodyState();
@@ -35,8 +37,14 @@ class _BodyState extends State<Body> with TickerProviderStateMixin {
                   padding: EdgeInsets.symmetric(horizontal: kPadding),
                   child: Row(
                     children: [
-                      CircleAvatar(
-                        backgroundImage: AssetImage("assets/images/mycat.jpg"),
+                      GestureDetector(
+                        child: CircleAvatar(
+                          backgroundImage:
+                              AssetImage("assets/images/mycat.jpg"),
+                        ),
+                        onTap: () {
+                          widget.scaffoldKey!.currentState!.openDrawer();
+                        },
                       ),
                       SizedBox(width: kPadding),
                       Expanded(
@@ -92,7 +100,8 @@ class _BodyState extends State<Body> with TickerProviderStateMixin {
                       child: Column(
                         children: [
                           MessageItem(
-                            profilePic: "assets/images/mycat.jpg",
+                            profilePic:
+                                "https://yt3.ggpht.com/ytc/AKedOLS3g5vlmWiRh9-3aqN_oARKzPcJ4MsezHQfZR6J=s900-c-k-c0x00ffffff-no-rj",
                             username: "Asadbek Noyibjonov",
                             lastMsg: "Hey What are you doing? ",
                             time: "New",

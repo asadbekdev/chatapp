@@ -1,3 +1,4 @@
+import 'package:chatapp/constans.dart';
 import 'package:chatapp/screens/signIn/components/body.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,7 @@ class SignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF212121),
+      backgroundColor: kBackgroundColor,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         automaticallyImplyLeading: false,

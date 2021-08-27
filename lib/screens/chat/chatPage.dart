@@ -18,7 +18,7 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF212121),
+      backgroundColor: kBackgroundColor,
       appBar: AppBar(
         leadingWidth: 30,
         leading: IconButton(
