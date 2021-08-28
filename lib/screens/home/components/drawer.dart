@@ -1,14 +1,19 @@
+import 'package:chatapp/components/custom_text_field.dart';
 import 'package:chatapp/constans.dart';
 import 'package:chatapp/screens/signUp/sign_up.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CustomDrawer extends StatelessWidget {
   var user;
-  CustomDrawer({Key? key,this.user}) : super(key: key);
+  GlobalKey<ScaffoldState>? scaffoldKey = GlobalKey<ScaffoldState>();
+  CustomDrawer({Key? key, this.user, this.scaffoldKey}) : super(key: key);
   FirebaseAuth _authUser = FirebaseAuth.instance;
-
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController _groupNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -54,10 +59,63 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Text('Item 1'),
+            title: Text('New Group'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              Navigator.pop(context);
+              showDialog(
+                context: context,
+                builder: (contex) {
+                  return SimpleDialog(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: kPadding, vertical: kPadding),
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              CustomTextField(
+                                controller: _groupNameController,
+                                hintText: "Enter groupname...",
+                                keyboardType: TextInputType.text,
+                                validator: (val) {
+                                  if (val == null && val.length < 3) {
+                                    return 'Enter 3 characters at least';
+                                  }
+                                },
+                              ),
+                              SizedBox(height: kPadding / 2),
+                              ElevatedButton(
+                                child: Text("Create group"),
+                                onPressed: () async {
+                                  if (_formKey.currentState!.validate()) {
+                                    await _firestore
+                                        .collection('groups')
+                                        .doc(_groupNameController.text)
+                                        .set(
+                                      {
+                                        "groupName": _groupNameController.text,
+                                        "groupPhoto": "",
+                                      },
+                                      SetOptions(merge: true),
+                                    );
+                                    _firestore
+                                        .collection('groups')
+                                        .doc(_groupNameController.text)
+                                        .collection('msg')
+                                        .doc();
+                                  }
+                                  Navigator.of(context).pop();
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
             },
           ),
           ListTile(

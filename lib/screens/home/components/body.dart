@@ -1,7 +1,9 @@
 import 'package:chatapp/constans.dart';
+import 'package:chatapp/models/database.dart';
 import 'package:chatapp/screens/chat/chatPage.dart';
 import 'package:chatapp/screens/home/components/message_item.dart';
 import 'package:chatapp/screens/home/components/tabBar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +18,8 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> with TickerProviderStateMixin {
   TabController? _tabController;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   @override
   void initState() {
     super.initState();
@@ -97,9 +101,10 @@ class _BodyState extends State<Body> with TickerProviderStateMixin {
                   children: [
                     // FIRST TAB
                     Container(
-                      child: Column(
-                        children: [
-                          MessageItem(
+                      child: ListView.builder(
+                        itemCount: 1,
+                        itemBuilder: (context, index) {
+                          return MessageItem(
                             profilePic:
                                 "https://yt3.ggpht.com/ytc/AKedOLS3g5vlmWiRh9-3aqN_oARKzPcJ4MsezHQfZR6J=s900-c-k-c0x00ffffff-no-rj",
                             username: "Asadbek Noyibjonov",
@@ -117,13 +122,33 @@ class _BodyState extends State<Body> with TickerProviderStateMixin {
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          );
+                        },
                       ),
                     ),
                     // SECOND TAB
                     Container(
-                      child: Text("Groups"),
+                      child: StreamBuilder(
+                        stream: _firestore.collection('groups').snapshots(),
+                        builder: (context, AsyncSnapshot snapshot) {
+                          if (!snapshot.hasData) {
+                            return Text("You don't any groups yet !");
+                          } else {
+                            return ListView.builder(
+                              itemCount: snapshot.data.docs.length,
+                              itemBuilder: (context, index) {
+                                return MessageItem(
+                                  profilePic: snapshot.data.docs[index]["groupPhoto"],
+                                  lastMsg: "hello",
+                                  username: snapshot.data.docs[index]["groupName"],
+                                  time: "8.00",
+                                  onPressed: () {},
+                                );
+                              },
+                            );
+                          }
+                        },
+                      ),
                     ),
                     // THIRD TAB
                     Container(

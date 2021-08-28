@@ -46,7 +46,7 @@ class _BodyState extends State<Body> {
                     // USERNAME FIELD SECTION
                     CustomTextField(
                       hintText: 'Username',
-                      usernameController: _usernameController,
+                      controller: _usernameController,
                       keyboardType: TextInputType.name,
                       validator: (val) {
                         if (val == null || val.isEmpty || val.length < 3) {
@@ -59,7 +59,7 @@ class _BodyState extends State<Body> {
                     // EMAIL FIELD SECTION
                     CustomTextField(
                       hintText: 'Email',
-                      usernameController: _emailController,
+                      controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       validator: (val) {
                         var regex = RegExp(
@@ -76,7 +76,7 @@ class _BodyState extends State<Body> {
                     // PASSWORD FIELD SECTION
                     CustomTextField(
                       hintText: 'Password',
-                      usernameController: _passwordController,
+                      controller: _passwordController,
                       keyboardType: TextInputType.visiblePassword,
                       validator: (val) {
                         if (val == null || val.length < 6) {

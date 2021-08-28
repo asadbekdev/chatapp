@@ -22,8 +22,20 @@ class MessageItem extends StatelessWidget {
             EdgeInsets.symmetric(horizontal: kPadding, vertical: kPadding / 2),
         child: Row(
           children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(profilePic.toString()),
+            Container(
+              child: profilePic != ""
+                  ? CircleAvatar(
+                      backgroundImage: NetworkImage(profilePic.toString()),
+                    )
+                  : CircleAvatar(
+                      child: Text(
+                        "${username[0]}".toUpperCase(),
+                        style: Theme.of(context)
+                            .textTheme
+                            .subtitle2!
+                            .copyWith(color: Colors.white70),
+                      ),
+                    ),
             ),
             SizedBox(width: kPadding - 5),
             Expanded(

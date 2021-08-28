@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: kBackgroundColor,
-      drawer: CustomDrawer(user: user),
+      drawer: CustomDrawer(user: user,scaffoldKey: _scaffoldKey),
       body: Body(
         scaffoldKey: _scaffoldKey,
       ),

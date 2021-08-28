@@ -35,7 +35,7 @@ class _BodyState extends State<Body> {
                     SizedBox(height: size.height * 0.4),
                     CustomTextField(
                       hintText: 'Email',
-                      usernameController: _emailController,
+                      controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       validator: (val) {
                         var regex = RegExp(
@@ -50,7 +50,7 @@ class _BodyState extends State<Body> {
                     SizedBox(height: kPadding),
                     CustomTextField(
                       hintText: 'Password',
-                      usernameController: _passwordController,
+                      controller: _passwordController,
                       keyboardType: TextInputType.visiblePassword,
                       validator: (val) {
                         if (val == null || val.length < 6) {

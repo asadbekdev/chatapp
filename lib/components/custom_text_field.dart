@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CustomTextField extends StatelessWidget {
-  var validator, usernameController, keyboardType, hintText;
+  var validator, controller, keyboardType, hintText;
 
   CustomTextField({
     Key? key,
-    required this.usernameController,
+    required this.controller,
     required this.hintText,
     required this.keyboardType,
     this.validator,
@@ -19,7 +19,7 @@ class CustomTextField extends StatelessWidget {
         cursorColor: Colors.white,
         style: TextStyle(color: Colors.white),
         keyboardType: keyboardType,
-        controller: usernameController,
+        controller: controller,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: validator,
         decoration: InputDecoration(
